@@ -21,7 +21,7 @@ class Forgotpassword extends CI_Controller {
 		$this->email->from('sendingemail117', 'Regards');
 		$this->email->to($email);
 		$this->email->subject('Forgot Password');
-		$this->email->message('Click this link to reset password :  <a href="'.base_url(). '/forgotpassword/resetpassword?email=' . $email. '&token=' . urlencode($token) .  '">Reset Password</a>');
+		$this->email->message('Click this link to reset password :  <a href="'.base_url(). 'forgotpassword/resetpassword?email=' . $email. '&token=' . urlencode($token) .  '">Reset Password</a>');
 		$this->email->send();
 	}
 
@@ -65,6 +65,7 @@ class Forgotpassword extends CI_Controller {
 			$user_token = $this->m_user->authenticateToken($token);
 			if($user_token){
 				$this->session->set_userdata('email_reset', $email);
+				$this->session->set_userdata('token_reset', $token);
 				$this->transferPassword();
 			}else{
 				$this->session->set_flashdata('message', 'Token not found');
@@ -76,6 +77,34 @@ class Forgotpassword extends CI_Controller {
 
 	}
 
+
+	public function transferPassword()
+	{
+		$this->form_validation->set_rules('password', 'password', 'required|min_length[6]|matches[password1]');
+		$this->form_validation->set_rules('password1', 'password1', 'required|min_length[6]|matches[password]');
+		if($this->form_validation->run() == false) {
+			$data['title'] = 'Change Password';
+			$this->load->view('v_transferpassword', $data);
+		} else {
+			$password = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
+			$email = $this->session->userdata('email_reset');
+			$token = $this->session->userdata('token_reset');
+			$data = [
+				'email' => $email,
+				'password' => $password
+			];
+			$changes = $this->m_user->transferPassword('user', $data);
+			if($changes){
+				$this->session->set_flashdata('message', 'Password changes successfully!');
+				redirect(base_url('login'));
+			} else {
+				$this->session->set_flashdata('message', 'Changes password your failed!');
+				redirect(''.base_url(). 'forgotpassword/resetpassword?email=' . $email. '&token=' . urlencode($token) .  '');
+			}
+		}
+
+
+	}
 
 
 }

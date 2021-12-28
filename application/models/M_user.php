@@ -24,4 +24,11 @@ class M_user extends CI_Model {
 	{
 		return $this->db->get_where('tokens', ['token' => $token])->row_array();
 	}
+
+	public function transferPassword($table, $data)
+	{
+		$this->db->set('password', $data['password']);
+		$this->db->where('email', $data['email']);
+		return $this->db->update($table);
+	}
 }

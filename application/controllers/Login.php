@@ -31,10 +31,11 @@ class Login extends CI_Controller {
 					$user = $this->m_user->authentication($email, $password);
 					if (!$user == null ){
 					if(!$email == $user['email']){
-						echo "Wrong E-mail!";
+						$this->session->set_flashdata('message', 'E-mail not found');
 					} else {
 							if(!password_verify($password, $user['password'])){
-								echo "Wrong password!";
+								$this->session->set_flashdata('message', 'Wrong password!');
+								redirect(base_url('login'));
 							} else {
 								$this->session->set_userdata($user);
 								$this->session->set_flashdata('message', 'Login successfully!');
@@ -42,7 +43,8 @@ class Login extends CI_Controller {
 							}
 						}
 					} else {
-					echo "E-mail not found";
+					$this->session->set_flashdata('message', 'E-mail not found');
+					redirect(base_url('login'));
 				}
 			}
 
