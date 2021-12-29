@@ -12,7 +12,6 @@ class M_user extends CI_Model {
 	public function authentication($email)
 	{
 		return $this->db->get_where('user', ['email' => $email])->row_array();
-		
 	}
 
 	public function insertToken($tokens, $table)
@@ -31,4 +30,6 @@ class M_user extends CI_Model {
 		$this->db->where('email', $data['email']);
 		return $this->db->update($table);
 	}
+
+
 }

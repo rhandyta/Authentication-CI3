@@ -1,26 +1,29 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title><?= $title; ?></title>
-</head>
-<body>
 	<div class="container">
-		<div class="alert"><?= $this->session->flashdata('message') ?></div>
-		<form action="<?= base_url('login/loggin') ?>" method="post">
-			<div class="form-group">
-				<label for="email">E-mail</label>
-				<input class="form-control" type="email" name="email" id="email">
+		<div class="d-flex justify-content-center my-5">
+			<div class="card col-lg-5">
+				<div class="card-header">
+					<h4 class="text-center"><?= $title ?></h4>
+				</div>
+					<div class="card-body">
+				  		<?= $this->session->flashdata('message') ?>
+						<form action="<?= base_url('login/loggin') ?>" method="post">
+							<div class="form-group">
+							<label for="email">E-mail</label>
+								<input class="form-control" type="email" name="email" id="email">
+							</div>
+							<div class="form-group">
+								<label for="password">Password</label>
+								<input class="form-control" type="password" name="password" id="password">
+							</div>
+							<div class="d-flex justify-content-center">
+								<button class="btn btn-primary mr-2" type="submit">Login</button>
+								<a class="btn btn-success" href="<?= base_url('register') ?>">Register</a>
+							</div>
+						</form>
+				</div>
+				<div class="card-footer d-flex justify-content-center">
+					<a class="btn btn-info cent" href="<?= base_url('forgotpassword') ?>">Forgot Password</a>
+				</div>
 			</div>
-			<div class="form-group">
-				<label for="password">Password</label>
-				<input class="form-control" type="password" name="password" id="password">
-			</div>
-			<button type="submit">Login</button>
-			<a href="<?= base_url('register') ?>">Register</a>
-			<a href="<?= base_url('forgotpassword') ?>">Forgot Password</a>
-		</form>
+		</div>
 	</div>
-</body>
-</html>
