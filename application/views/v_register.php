@@ -9,23 +9,23 @@
 				<form action="<?= base_url('register/registration') ?>" method="post" enctype="multipart/form-data">
 					<div class="form-group">
 						<label for="email">E-mail</label>
-						<input class="form-control" type="email" name="email" id="email">
+						<input class="form-control" type="email" name="email" id="email" required>
 					</div>
 					<div class="form-group">
 						<label for="name">Name</label>
-						<input class="form-control" type="name" name="name" id="name">
+						<input class="form-control" type="name" name="name" id="name" required>
 					</div>
 					<div class="form-group">
 						<label for="password">Password</label>
-						<input class="form-control" type="password" name="password" id="password">
+						<input class="form-control" type="password" name="password" id="password" required>
 					</div>
 					<div class="form-group">
 						<label for="password1">Confirm Password</label>
-						<input class="form-control" type="password" name="password1" id="password1">
+						<input class="form-control" type="password" name="password1" id="password1" required>
 					</div>
 					<div class="form-group">
 						<label for="image">Image</label>
-						<input class="form-control" type="file" name="image" id="image">
+						<input class="form-control" type="file" name="image" id="image" required>
 					</div>
 					<button class="btn btn-primary" type="submit">Register</button>
 					<button class="btn btn-success" type="reset">Reset</button>
