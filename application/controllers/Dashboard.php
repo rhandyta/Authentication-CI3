@@ -1,10 +1,11 @@
-<?php 
+<?php
 
-class Dashboard extends CI_Controller {
+class Dashboard extends CI_Controller
+{
 
 	public function index()
 	{
-		if($this->session->userdata('name')) {
+		if ($this->session->userdata('name')) {
 			$data['title'] = 'Dashboard';
 			$this->load->view('templates/header', $data);
 			$this->load->view('v_dashboard', $data);
@@ -18,7 +19,5 @@ class Dashboard extends CI_Controller {
 			</div>');
 			redirect(base_url('login'));
 		}
-		
 	}
-
 }

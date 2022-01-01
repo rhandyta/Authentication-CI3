@@ -1,6 +1,7 @@
-<?php 
+<?php
 
-class M_user extends CI_Model {
+class M_user extends CI_Model
+{
 	public $table = 'user';
 	public $id = 'email';
 
@@ -30,6 +31,4 @@ class M_user extends CI_Model {
 		$this->db->where('email', $data['email']);
 		return $this->db->update($table);
 	}
-
-
 }

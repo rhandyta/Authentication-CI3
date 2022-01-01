@@ -2,7 +2,7 @@
 	<div class="d-flex justify-content-center my-5">
 		<div class="card">
 			<div class="card-header">
-			<h5 class="text-center"><?= $title ?></h5>
+				<h5 class="text-center"><?= $title ?></h5>
 			</div>
 			<div class="card-body">
 				<p><?= $this->session->flashdata('message') ?></p>
@@ -13,7 +13,7 @@
 				<p class="mt-2">Selamat datang <?= $this->session->userdata('name') ?> telah berhasil login melalui email: <?= $this->session->userdata('email') ?></p>
 				<div class="d-flex justify-content-center">
 					<form action="<?= base_url('login/logout') ?>" method="post">
-						<button	button class="btn btn-primary btn-sm" type="submit">Logout</button>
+						<button button class="btn btn-primary btn-sm" type="submit">Logout</button>
 					</form>
 				</div>
 			</div>
